@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guruprasad Nanivadekar | Data Analyst & Business Analyst</title>
+<style>
+  :root {
+    --blue: #1F4E79;
+    --lightblue: #2E75B6;
+    --accent: #41A4E6;
+    --bg: #F4F8FC;
+    --white: #ffffff;
+    --gray: #6B7280;
+    --darkgray: #374151;
+    --card: #ffffff;
+    --border: #E5EDF5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--darkgray); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    background: var(--blue);
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .nav-brand { color: #fff; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--lightblue) 60%, #41A4E6 100%);
+    color: #fff; padding: 80px 5% 70px;
+    display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+  }
+  .hero-avatar {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 3px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    letter-spacing: 1px;
+  }
+  .hero-text h1 { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+  .hero-text .tagline { font-size: 1.08rem; opacity: 0.9; margin-bottom: 18px; font-weight: 400; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .badge {
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35);
+    color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 500;
+  }
+  .badge.green { background: #1D9E75; border-color: #1D9E75; }
+  .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 24px; border-radius: 6px; font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; display: inline-block;
+  }
+  .btn-white { background: #fff; color: var(--blue); }
+  .btn-white:hover { background: #e8f1fb; }
+  .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+  /* SECTIONS */
+  section { padding: 64px 5%; }
+  section:nth-child(even) { background: var(--white); }
+  .section-title {
+    font-size: 1.6rem; font-weight: 700; color: var(--blue);
+    margin-bottom: 8px; padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent); display: inline-block;
+  }
+  .section-sub { color: var(--gray); font-size: 0.95rem; margin-bottom: 36px; margin-top: 6px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start; }
+  .about-text p { margin-bottom: 14px; font-size: 1rem; color: var(--darkgray); }
+  .stat-cards { display: flex; flex-direction: column; gap: 14px; }
+  .stat-card {
+    background: linear-gradient(135deg, var(--blue), var(--lightblue));
+    color: #fff; border-radius: 12px; padding: 20px 22px; text-align: center;
+  }
+  .stat-card .num { font-size: 2rem; font-weight: 700; }
+  .stat-card .label { font-size: 0.82rem; opacity: 0.85; margin-top: 2px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(31,78,121,0.12); }
+  .skill-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .skill-icon { font-size: 1.2rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag {
+    background: var(--bg); color: var(--darkgray); border: 1px solid var(--border);
+    padding: 3px 11px; border-radius: 14px; font-size: 0.8rem;
+  }
+  .skill-tag.highlight { background: #EBF2FA; color: var(--blue); border-color: #BDD6EE; font-weight: 600; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--lightblue), var(--accent));
+  }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -24px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--lightblue); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--lightblue);
+  }
+  .exp-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .exp-title { font-size: 1.05rem; font-weight: 700; color: var(--blue); }
+  .exp-period { font-size: 0.82rem; color: var(--gray); background: var(--bg); padding: 3px 10px; border-radius: 12px; white-space: nowrap; }
+  .exp-company { font-size: 0.9rem; color: var(--lightblue); font-weight: 600; margin-bottom: 12px; }
+  .exp-bullets { list-style: none; padding: 0; }
+  .exp-bullets li { font-size: 0.91rem; color: var(--darkgray); padding: 4px 0 4px 18px; position: relative; }
+  .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.85rem; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px; transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(31,78,121,0.13); }
+  .project-icon { font-size: 2rem; margin-bottom: 12px; }
+  .project-card h3 { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+  .project-card p { font-size: 0.88rem; color: var(--gray); flex: 1; margin-bottom: 14px; }
+  .project-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tool-tag { background: #EBF2FA; color: var(--blue); padding: 2px 10px; border-radius: 10px; font-size: 0.78rem; font-weight: 600; }
+  .project-link {
+    color: var(--lightblue); font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; border-top: 1px solid var(--border); padding-top: 12px; margin-top: auto;
+  }
+  .project-link:hover { color: var(--blue); }
+
+  /* CERTIFICATIONS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; display: flex; align-items: flex-start; gap: 14px;
+  }
+  .cert-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .cert-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--darkgray); margin-bottom: 3px; }
+  .cert-card p { font-size: 0.8rem; color: var(--gray); }
+
+  /* CONTACT */
+  .contact-section { background: linear-gradient(135deg, var(--blue), var(--lightblue)); color: #fff; text-align: center; }
+  .contact-section .section-title { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .contact-section .section-sub { color: rgba(255,255,255,0.8); }
+  .contact-cards { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+  .contact-card {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px; padding: 18px 28px; text-align: center; min-width: 180px;
+  }
+  .contact-card .icon { font-size: 1.6rem; margin-bottom: 6px; }
+  .contact-card a { color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+  .contact-card a:hover { text-decoration: underline; }
+  .availability { display: inline-flex; align-items: center; gap: 8px; background: #1D9E75; color: #fff; padding: 10px 24px; border-radius: 24px; font-size: 0.9rem; font-weight: 600; margin-top: 8px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #6EE7B7; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* FOOTER */
+  footer { background: var(--blue); color: rgba(255,255,255,0.6); text-align: center; padding: 22px 5%; font-size: 0.83rem; }
+
+  /* RESPONSIVE */
+  @media(max-width: 768px) {
+    .hero { padding: 50px 5%; }
+    .hero-text h1 { font-size: 1.7rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 16px; }
+    .stat-cards { flex-direction: row; }
+  }
+  @media(max-width: 480px) {
+    .nav-links { display: none; }
+    .stat-cards { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">GN Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-avatar">GN</div>
+  <div class="hero-text">
+    <h1>Guruprasad Nanivadekar</h1>
+    <p class="tagline">Data Analyst &amp; Business Analyst &nbsp;|&nbsp; Power BI • SQL • Python &nbsp;|&nbsp; Pune, India</p>
+    <div class="hero-badges">
+      <span class="badge">4.9 Years Experience</span>
+      <span class="badge">Power BI Developer</span>
+      <span class="badge">SQL Expert</span>
+      <span class="badge">IIBA Certified</span>
+      <span class="badge green">&#x25cf; Immediate Joiner</span>
+    </div>
+    <div class="hero-links">
+      <a href="#contact" class="btn btn-white">Hire Me</a>
+      <a href="#projects" class="btn btn-outline">View Projects</a>
+      <a href="https://www.linkedin.com/in/guruprasad-nanivadekar/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">About Me</div>
+  <p class="section-sub">Who I am and what I bring to the table</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a Data Analyst and Business Analyst with <strong>4.9 years of experience</strong> transforming complex, multi-source data into compelling dashboards and actionable insights that drive real business decisions.</p>
+      <p>I have worked across the <strong>oil &amp; gas</strong> and <strong>IT service management</strong> domains — building Power BI dashboards, writing SQL queries, automating data workflows with Python, and collaborating with stakeholders to translate business needs into data-driven solutions.</p>
+      <p>My strength lies at the intersection of <strong>business understanding and technical execution</strong> — I speak both the language of data and the language of business. I am actively expanding my skills into <strong>Microsoft Dynamics 365, Tableau, and Salesforce</strong> to stay ahead of the curve.</p>
+      <p>I am an <strong>immediate joiner</strong> based in Pune, Maharashtra, India and open to opportunities across Data Analytics, Business Intelligence, and Functional Consultant roles.</p>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="num">4.9</div>
+        <div class="label">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">10+</div>
+        <div class="label">Dashboards Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">3</div>
+        <div class="label">Certifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-title">Technical Skills</div>
+  <p class="section-sub">Tools and technologies I work with</p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3><span class="skill-icon">📊</span> Data Visualization & BI</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Power BI</span>
+        <span class="skill-tag highlight">DAX</span>
+        <span class="skill-tag">RLS</span>
+        <span class="skill-tag">Power Apps</span>
+        <span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Excel Dashboards</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">🗄️</span> Data Analysis & Querying</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">SQL</span>
+        <span class="skill-tag highlight">Python</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Statistical Analysis</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">💼</span> Business Analysis</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Requirements Elicitation</span>
+        <span class="skill-tag">User Stories</span>
+        <span class="skill-tag">Gap Analysis</span>
+        <span class="skill-tag">Process Mapping</span>
+        <span class="skill-tag">UAT</span>
+        <span class="skill-tag">As-Is / To-Be</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">🤖</span> Generative AI Tools</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">ChatGPT</span>
+        <span class="skill-tag highlight">GitHub Copilot</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">AI-Assisted Reporting</span>
+        <span class="skill-tag">Insight Summarization</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">🔧</span> Tools & Platforms</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">JIRA</span>
+        <span class="skill-tag">Azure DevOps</span>
+        <span class="skill-tag">MS Office Suite</span>
+        <span class="skill-tag">Power Query</span>
+        <span class="skill-tag">Google Colab</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="skill-icon">⚙️</span> Methodologies</h3>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Agile / Scrum</span>
+        <span class="skill-tag">KPI Tracking</span>
+        <span class="skill-tag">Root Cause Analysis</span>
+        <span class="skill-tag">Data Storytelling</span>
+        <span class="skill-tag">Trend Analysis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-title">Work Experience</div>
+  <p class="section-sub">My professional journey</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Business Analyst – Analytics & Solutions</div>
+          <div class="exp-period">April 2025 – Present</div>
+        </div>
+        <div class="exp-company">Quest Global &nbsp;|&nbsp; Pune, India</div>
+        <ul class="exp-bullets">
+          <li>Engineered 3+ Power BI dashboards tracking 10+ workforce utilization KPIs for 50+ stakeholders in the oil &amp; gas domain</li>
+          <li>Automated Python data workflows reducing manual effort by ~35% and improving reporting turnaround time</li>
+          <li>Designed technology-enabled business use cases, documenting as-is and to-be system processes</li>
+          <li>Leveraged ChatGPT for stakeholder report narratives, reducing preparation time by ~40%</li>
+          <li>Performed data validation across multiple source systems maintaining 99%+ report accuracy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-title">Associate Software Engineer – Business Analyst</div>
+          <div class="exp-period">November 2021 – April 2025</div>
+        </div>
+        <div class="exp-company">Mphasis &nbsp;|&nbsp; Pune / Bengaluru, India</div>
+        <ul class="exp-bullets">
+          <li>Built 5+ Power BI dashboards with advanced DAX, RLS, and Power Apps integration for SLA and KPI tracking</li>
+          <li>Analyzed 200+ technical issues per quarter using Python and SQL — root cause analysis reduced incidents by ~25%</li>
+          <li>Developed user guides and delivered training sessions enabling product adoption across teams</li>
+          <li>Gathered and translated business requirements into user stories and acceptance criteria across 10+ projects</li>
+          <li>Used GitHub Copilot to accelerate Python scripting, reducing development time by ~30%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-title">Projects</div>
+  <p class="section-sub">Real work. Real data. Real insights.</p>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-icon">📈</div>
+      <h3>Electronics Sales Performance Dashboard</h3>
+      <p>Built an end-to-end interactive Power BI dashboard analyzing sales data for an electronics company across smartphones, laptops, and accessories. Identified 22% Q3 laptop sales drop and top products driving 60%+ of revenue.</p>
+      <div class="project-tools">
+        <span class="tool-tag">Power BI</span>
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">SQL</span>
+        <span class="tool-tag">DAX</span>
+        <span class="tool-tag">ChatGPT</span>
+      </div>
+      <a class="project-link" href="#contact">📩 Request Demo</a>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">👥</div>
+      <h3>HR Attrition Analysis</h3>
+      <p>Analyzed IBM HR dataset of 1,400+ employee records using Python and Power BI. Identified key attrition drivers by department, salary band, and age group — delivering a 3-visual interactive dashboard with business recommendations.</p>
+      <div class="project-tools">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">Pandas</span>
+        <span class="tool-tag">Power BI</span>
+        <span class="tool-tag">SQL</span>
+      </div>
+      <a class="project-link" href="#contact">📩 Request Demo</a>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🛒</div>
+      <h3>Superstore BI Report — Power BI vs Tableau</h3>
+      <p>Built the same dashboard in both Power BI and Tableau Public to demonstrate tool flexibility. 4 visuals: revenue by region map, profit margin by category, monthly trends, and top 10 products.</p>
+      <div class="project-tools">
+        <span class="tool-tag">Power BI</span>
+        <span class="tool-tag">Tableau</span>
+        <span class="tool-tag">SQL</span>
+        <span class="tool-tag">Excel</span>
+      </div>
+      <a class="project-link" href="#contact">📩 Request Demo</a>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🔍</div>
+      <h3>Python EDA — Exploratory Data Analysis</h3>
+      <p>Performed end-to-end exploratory data analysis using Python in Google Colab. Cleaned, transformed, and visualized a real-world dataset — answering 3 business questions with data-backed findings.</p>
+      <div class="project-tools">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">Pandas</span>
+        <span class="tool-tag">NumPy</span>
+        <span class="tool-tag">Matplotlib</span>
+      </div>
+      <a class="project-link" href="#contact">📩 Request Demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-title">Certifications</div>
+  <p class="section-sub">Verified credentials and professional development</p>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">📋</div>
+      <div>
+        <h4>Business Analysis Fundamentals</h4>
+        <p>IIBA Endorsed &nbsp;|&nbsp; International Institute of Business Analysis</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📊</div>
+      <div>
+        <h4>Microsoft Power BI Desktop for Business Intelligence</h4>
+        <p>Microsoft &nbsp;|&nbsp; Power BI Visualization &amp; Dashboarding</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🔐</div>
+      <div>
+        <h4>Introduction to Cybersecurity</h4>
+        <p>Cisco Networking Academy &nbsp;|&nbsp; Security Fundamentals</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🎯</div>
+      <div>
+        <h4>Microsoft Dynamics 365 Fundamentals</h4>
+        <p>Microsoft Learn &nbsp;|&nbsp; MB-910 Learning Path — In Progress</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">⚡</div>
+      <div>
+        <h4>Salesforce Trailhead</h4>
+        <p>Salesforce &nbsp;|&nbsp; BA Career Path &amp; CRM Analytics — In Progress</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🔵</div>
+      <div>
+        <h4>Google Data Analytics Certificate</h4>
+        <p>Google / Coursera &nbsp;|&nbsp; Professional Certificate — In Progress</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-title">Get In Touch</div>
+  <p class="section-sub">Open to Data Analyst, Business Analyst, BI Developer &amp; Functional Consultant roles</p>
+  <div class="availability">
+    <div class="dot"></div>
+    Available Immediately — Immediate Joiner
+  </div>
+  <br><br>
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="icon">📧</div>
+      <div><a href="mailto:nanivadekarguru@gmail.com">nanivadekarguru@gmail.com</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📱</div>
+      <div><a href="tel:+919518506383">+91-9518506383</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="icon">💼</div>
+      <div><a href="https://www.linkedin.com/in/guruprasad-nanivadekar/" target="_blank">LinkedIn Profile ↗</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📍</div>
+      <div>Pune, Maharashtra, India</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Guruprasad Nanivadekar &nbsp;|&nbsp; Built with GitHub Pages &nbsp;|&nbsp; Pune, Maharashtra, India</p>
+</footer>
+
+</body>
+</html>
