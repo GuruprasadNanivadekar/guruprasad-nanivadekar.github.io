@@ -12,7 +12,6 @@
    THEME VARIABLES
 ═══════════════════════════════════════ */
 :root {
-  /* Light theme */
   --bg:         #F8FAFC;
   --bg2:        #FFFFFF;
   --bg3:        #F1F5F9;
@@ -126,7 +125,6 @@ nav.scrolled { box-shadow: var(--shadow-md); }
 .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg3); }
 .nav-right { display: flex; align-items: center; gap: 12px; }
 
-/* THEME TOGGLE */
 .theme-toggle {
   width: 44px; height: 24px;
   background: var(--border);
@@ -233,7 +231,6 @@ nav.scrolled { box-shadow: var(--shadow-md); }
 }
 .btn-outline-hero:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
 
-/* HERO PHOTO */
 .hero-photo-col { position: relative; display: flex; justify-content: center; align-items: center; }
 .photo-frame {
   width: 320px; height: 380px; border-radius: 28px;
@@ -301,7 +298,6 @@ nav.scrolled { box-shadow: var(--shadow-md); }
   background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .stat-box .slbl { font-size: 0.82rem; color: var(--text3); margin-top: 4px; font-weight: 500; }
-.stat-divider { width: 1px; background: var(--border); margin: 10px 0; }
 
 /* ═══════════════════════════════════════
    SECTION LAYOUT
@@ -435,10 +431,13 @@ section { padding: 88px 5%; }
 .p2 .proj-top { background: var(--grad2); }
 .p3 .proj-top { background: linear-gradient(135deg,#D97706,#EF4444); }
 .p4 .proj-top { background: linear-gradient(135deg,#7C3AED,#2563EB); }
+.p5 .proj-top { background: linear-gradient(135deg,#7C3AED,#EC4899); }
+.p6 .proj-top { background: linear-gradient(135deg,#059669,#0891B2); }
 .proj-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
 .proj-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
 .proj-ico { font-size: 1.8rem; }
 .proj-badge { font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: var(--green-soft); color: var(--green); border: 1px solid rgba(5,150,105,0.2); }
+.proj-badge.ai { background: var(--purple-soft); color: var(--purple); border: 1px solid rgba(124,58,237,0.2); }
 .proj-name { font-family:'Bricolage Grotesque',sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 .proj-desc { font-size: 0.87rem; color: var(--text2); line-height: 1.75; flex: 1; margin-bottom: 16px; }
 .proj-tools { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 24px; border-top: 1px solid var(--border2); background: var(--bg3); }
@@ -470,6 +469,8 @@ section { padding: 88px 5%; }
 .cc4::after { background: linear-gradient(90deg,#D97706,#EF4444); }
 .cc5::after { background: linear-gradient(90deg,#7C3AED,#EC4899); }
 .cc6::after { background: linear-gradient(90deg,#EF4444,#F59E0B); }
+.cc7::after { background: linear-gradient(90deg,#2563EB,#059669); }
+.cc8::after { background: linear-gradient(90deg,#7C3AED,#2563EB); }
 .cert-icon { font-size: 1.6rem; }
 .cert-name { font-size: 0.88rem; font-weight: 700; color: var(--text); line-height: 1.4; }
 .cert-by { font-size: 0.77rem; color: var(--text3); }
@@ -544,6 +545,8 @@ footer {
 .staggered.in > *:nth-child(4){transition-delay:.19s}
 .staggered.in > *:nth-child(5){transition-delay:.24s}
 .staggered.in > *:nth-child(6){transition-delay:.29s}
+.staggered.in > *:nth-child(7){transition-delay:.34s}
+.staggered.in > *:nth-child(8){transition-delay:.39s}
 .staggered.in > * { opacity: 1; transform: none; }
 
 /* ═══════════════════════════════════════
@@ -613,10 +616,12 @@ footer {
         <span class="chip hi">Power BI</span>
         <span class="chip hi">SQL</span>
         <span class="chip hi">Python</span>
+        <span class="chip hi">Gen AI &amp; LLMs</span>
         <span class="chip">DAX &amp; RLS</span>
+        <span class="chip">RAG &amp; LangChain</span>
+        <span class="chip">Prompt Engineering</span>
         <span class="chip">Business Analysis</span>
         <span class="chip">Agile / Scrum</span>
-        <span class="chip">Gen AI Tools</span>
         <span class="chip">IIBA Certified</span>
       </div>
       <div class="hero-actions">
@@ -673,9 +678,10 @@ footer {
       <div class="about-text reveal-l">
         <p>I'm a <strong>Data Analyst and Business Analyst</strong> with 4.9 years of experience across the <strong>oil &amp; gas</strong> and <strong>IT service management</strong> domains — transforming raw, complex datasets into dashboards and actionable insights that drive real decisions.</p>
         <p>My strength lies at the intersection of <strong>business understanding and technical execution</strong>. I can sit in a stakeholder meeting, understand the problem, and then build the SQL queries, Power BI dashboard, and executive report to solve it — end to end.</p>
-        <p>I'm actively expanding into <strong>Microsoft Dynamics 365, Tableau,</strong> and <strong>Salesforce</strong>, and I use <strong>AI tools daily</strong> (ChatGPT, GitHub Copilot) to work smarter and deliver higher-quality outputs.</p>
+        <p>I'm actively expanding into <strong>Generative AI</strong> — building LLM-powered applications using <strong>LangChain, Ollama, RAG pipelines, and ChromaDB</strong> — and I use <strong>AI tools daily</strong> (ChatGPT, GitHub Copilot) to work smarter and deliver higher-quality outputs.</p>
         <div class="hi-list">
           <div class="hi-row"><span class="hi-icon">🏢</span><div class="hi-body"><strong>Currently at Quest Global</strong><span>Oil &amp; Gas Analytics, Pune</span></div></div>
+          <div class="hi-row"><span class="hi-icon">🤖</span><div class="hi-body"><strong>Building Gen AI Portfolio</strong><span>RAG apps, Local LLMs, LangChain, Streamlit</span></div></div>
           <div class="hi-row"><span class="hi-icon">🎓</span><div class="hi-body"><strong>B.Tech — Electronics &amp; Telecom</strong><span>Ashokrao Mane Group of Institutions, 2021</span></div></div>
           <div class="hi-row"><span class="hi-icon">📍</span><div class="hi-body"><strong>Pune, Maharashtra, India</strong><span>Open to remote &amp; hybrid opportunities</span></div></div>
         </div>
@@ -688,14 +694,14 @@ footer {
           <div class="ib-row"><span class="ib-k">Company</span><span class="ib-v">Quest Global</span></div>
           <div class="ib-row"><span class="ib-k">Location</span><span class="ib-v">Pune, India</span></div>
           <div class="ib-row"><span class="ib-k">Availability</span><span class="ib-v green-v">⚡ Immediate Joiner</span></div>
-          <div class="ib-row"><span class="ib-k">Open To</span><span class="ib-v">DA / BA / BI Dev</span></div>
+          <div class="ib-row"><span class="ib-k">Open To</span><span class="ib-v">DA / BA / BI / Gen AI</span></div>
         </div>
         <div class="info-block">
           <div class="ib-title">Domain Experience</div>
           <div class="ib-row"><span class="ib-k">Oil &amp; Gas</span><span class="ib-v">Quest Global</span></div>
           <div class="ib-row"><span class="ib-k">IT Service Mgmt</span><span class="ib-v">Mphasis</span></div>
           <div class="ib-row"><span class="ib-k">BI &amp; Reporting</span><span class="ib-v">Both roles</span></div>
-          <div class="ib-row"><span class="ib-k">CRM / Sales Data</span><span class="ib-v">Project work</span></div>
+          <div class="ib-row"><span class="ib-k">Gen AI / LLM Apps</span><span class="ib-v">Portfolio projects</span></div>
         </div>
       </div>
     </div>
@@ -728,15 +734,15 @@ footer {
         </div>
       </div>
       <div class="skill-card sc4">
-        <div class="sk-top"><div class="sk-ico">🤖</div><div class="sk-name">Generative AI</div></div>
+        <div class="sk-top"><div class="sk-ico">🤖</div><div class="sk-name">Generative AI &amp; LLMs</div></div>
         <div class="sk-tags">
-          <span class="st key">ChatGPT</span><span class="st key">GitHub Copilot</span><span class="st">Prompt Engineering</span><span class="st">AI-Assisted Reporting</span>
+          <span class="st key">LLMs</span><span class="st key">RAG Pipelines</span><span class="st key">Prompt Engineering</span><span class="st">LangChain</span><span class="st">Ollama</span><span class="st">ChromaDB</span><span class="st">Embeddings</span><span class="st">Streamlit AI Apps</span><span class="st">ChatGPT</span><span class="st">GitHub Copilot</span>
         </div>
       </div>
       <div class="skill-card sc5">
         <div class="sk-top"><div class="sk-ico">🔧</div><div class="sk-name">Tools &amp; Platforms</div></div>
         <div class="sk-tags">
-          <span class="st key">JIRA</span><span class="st">Azure DevOps</span><span class="st">MS Office Suite</span><span class="st">Power Query</span><span class="st">Salesforce</span>
+          <span class="st key">JIRA</span><span class="st">Azure DevOps</span><span class="st">MS Office Suite</span><span class="st">Power Query</span><span class="st">Salesforce</span><span class="st">Google Colab</span><span class="st">Streamlit</span>
         </div>
       </div>
       <div class="skill-card sc6">
@@ -756,6 +762,7 @@ footer {
     <h2 class="sec-title">My Professional <span class="gr">Journey</span></h2>
     <p class="sec-sub">4.9 years delivering data-driven impact across two companies.</p>
     <div class="exp-wrap">
+
       <div class="exp-entry reveal">
         <div class="exp-box">
           <div class="exp-row1">
@@ -767,14 +774,16 @@ footer {
             <li>Engineered 3+ Power BI dashboards tracking 10+ workforce utilization KPIs for 50+ stakeholders, enabling real-time resource planning in the oil &amp; gas domain.</li>
             <li>Automated Python (Pandas) data workflows reducing manual processing effort by ~35% and improving reporting turnaround time significantly.</li>
             <li>Designed technology-enabled business use cases and documented as-is / to-be system processes, acting as the Business–IS bridge.</li>
-            <li>Leveraged ChatGPT to draft stakeholder report narratives, reducing preparation time by ~40% and improving communication clarity.</li>
+            <li>Built a Streamlit + Ollama (Llama 3) prototype that auto-generates plain-English KPI commentary from Power BI data exports using a local LLM — reducing manual report narrative time by ~40% in PoC testing.</li>
+            <li>Applied few-shot and chain-of-thought prompt engineering techniques to improve quality and consistency of AI-generated executive summaries, cutting report preparation time by ~35%.</li>
             <li>Maintained 99%+ data accuracy through validation and reconciliation across multiple source systems.</li>
           </ul>
           <div class="exp-chips">
-            <span class="ech">Power BI</span><span class="ech">SQL</span><span class="ech">Python</span><span class="ech">DAX</span><span class="ech">ChatGPT</span><span class="ech">Oil &amp; Gas</span>
+            <span class="ech">Power BI</span><span class="ech">SQL</span><span class="ech">Python</span><span class="ech">DAX</span><span class="ech">Ollama</span><span class="ech">LangChain</span><span class="ech">Prompt Engineering</span><span class="ech">Streamlit</span><span class="ech">Oil &amp; Gas</span>
           </div>
         </div>
       </div>
+
       <div class="exp-entry reveal">
         <div class="exp-box">
           <div class="exp-row1">
@@ -788,12 +797,14 @@ footer {
             <li>Developed user guides and delivered training sessions enabling product adoption across end-user and support teams.</li>
             <li>Gathered and translated business requirements into user stories and acceptance criteria across 10+ Agile projects.</li>
             <li>Used GitHub Copilot to accelerate Python scripting, reducing development effort by ~30%.</li>
+            <li>Experimented with a RAG-based prototype (LangChain + ChromaDB + Ollama) to query historical issue logs in natural language — enabling faster pattern discovery without manual SQL querying; implemented as a personal learning project.</li>
           </ul>
           <div class="exp-chips">
-            <span class="ech">Power BI</span><span class="ech">SQL</span><span class="ech">Python</span><span class="ech">RLS</span><span class="ech">Agile</span><span class="ech">GitHub Copilot</span>
+            <span class="ech">Power BI</span><span class="ech">SQL</span><span class="ech">Python</span><span class="ech">RLS</span><span class="ech">Agile</span><span class="ech">GitHub Copilot</span><span class="ech">RAG</span><span class="ech">LangChain</span><span class="ech">ChromaDB</span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -803,9 +814,32 @@ footer {
   <div class="section-inner">
     <div class="sec-label">Projects</div>
     <h2 class="sec-title">Real Work. <span class="gr">Real Insights.</span></h2>
-    <p class="sec-sub">End-to-end analytics projects from raw data to business decisions.</p>
+    <p class="sec-sub">End-to-end analytics and AI projects — from raw data to business decisions.</p>
     <div class="proj-grid staggered">
+
       <div class="proj-card p1">
+        <div class="proj-top"></div>
+        <div class="proj-body">
+          <div class="proj-header"><div class="proj-ico">🤖</div><span class="proj-badge ai">Gen AI Project</span></div>
+          <div class="proj-name">AI-Powered Data Analyst App</div>
+          <p class="proj-desc">Streamlit app where users upload any CSV and ask questions in plain English — answered by a local LLM (Ollama + Gemma 2B). Built a full RAG pipeline: CSV → sentence-transformer embeddings → ChromaDB vector store → LangChain retrieval → LLM response. Zero API cost, runs entirely on a laptop with 8GB RAM.</p>
+        </div>
+        <div class="proj-tools"><span class="ptool">Python</span><span class="ptool">Streamlit</span><span class="ptool">Ollama</span><span class="ptool">LangChain</span><span class="ptool">ChromaDB</span><span class="ptool">RAG</span><span class="ptool">Embeddings</span></div>
+        <div class="proj-foot"><a href="#contact" class="proj-link">Request demo →</a></div>
+      </div>
+
+      <div class="proj-card p2">
+        <div class="proj-top"></div>
+        <div class="proj-body">
+          <div class="proj-header"><div class="proj-ico">💬</div><span class="proj-badge ai">Gen AI Project</span></div>
+          <div class="proj-name">Local AI Chatbot with Memory</div>
+          <p class="proj-desc">A fully offline AI chatbot built with Streamlit and LangChain running on Ollama (Llama 3.2:1B). Features full conversation memory via LangChain ConversationBufferMemory and streaming token-by-token output. No internet or paid API required — runs free on any 8GB RAM laptop.</p>
+        </div>
+        <div class="proj-tools"><span class="ptool">Python</span><span class="ptool">Streamlit</span><span class="ptool">LangChain</span><span class="ptool">Ollama</span><span class="ptool">Llama 3</span><span class="ptool">Local LLM</span></div>
+        <div class="proj-foot"><a href="#contact" class="proj-link">Request demo →</a></div>
+      </div>
+
+      <div class="proj-card p3">
         <div class="proj-top"></div>
         <div class="proj-body">
           <div class="proj-header"><div class="proj-ico">📈</div><span class="proj-badge">Completed</span></div>
@@ -815,7 +849,8 @@ footer {
         <div class="proj-tools"><span class="ptool">Power BI</span><span class="ptool">Python</span><span class="ptool">SQL</span><span class="ptool">DAX</span><span class="ptool">ChatGPT</span></div>
         <div class="proj-foot"><a href="#contact" class="proj-link">Request demo →</a></div>
       </div>
-      <div class="proj-card p2">
+
+      <div class="proj-card p4">
         <div class="proj-top"></div>
         <div class="proj-body">
           <div class="proj-header"><div class="proj-ico">👥</div><span class="proj-badge">Completed</span></div>
@@ -825,7 +860,8 @@ footer {
         <div class="proj-tools"><span class="ptool">Python</span><span class="ptool">Pandas</span><span class="ptool">Power BI</span><span class="ptool">SQL</span></div>
         <div class="proj-foot"><a href="#contact" class="proj-link">Request demo →</a></div>
       </div>
-      <div class="proj-card p3">
+
+      <div class="proj-card p5">
         <div class="proj-top"></div>
         <div class="proj-body">
           <div class="proj-header"><div class="proj-ico">🛒</div><span class="proj-badge">Completed</span></div>
@@ -835,7 +871,8 @@ footer {
         <div class="proj-tools"><span class="ptool">Power BI</span><span class="ptool">Tableau</span><span class="ptool">SQL</span><span class="ptool">Excel</span></div>
         <div class="proj-foot"><a href="#contact" class="proj-link">Request demo →</a></div>
       </div>
-      <div class="proj-card p4">
+
+      <div class="proj-card p6">
         <div class="proj-top"></div>
         <div class="proj-body">
           <div class="proj-header"><div class="proj-ico">🔍</div><span class="proj-badge">Completed</span></div>
@@ -845,6 +882,7 @@ footer {
         <div class="proj-tools"><span class="ptool">Python</span><span class="ptool">Pandas</span><span class="ptool">NumPy</span><span class="ptool">Matplotlib</span></div>
         <div class="proj-foot"><a href="#contact" class="proj-link">Request demo →</a></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -856,42 +894,63 @@ footer {
     <h2 class="sec-title">Credentials &amp; <span class="gr">Learning</span></h2>
     <p class="sec-sub">Verified certifications and actively pursued professional development.</p>
     <div class="cert-grid staggered">
+
       <div class="cert-card cc1">
         <div class="cert-icon">📋</div>
         <div class="cert-name">Business Analysis Fundamentals</div>
         <div class="cert-by">IIBA — International Institute of Business Analysis</div>
         <span class="cert-pill done">✓ Completed</span>
       </div>
+
       <div class="cert-card cc2">
         <div class="cert-icon">📊</div>
         <div class="cert-name">Microsoft Power BI Desktop for Business Intelligence</div>
         <div class="cert-by">Microsoft</div>
         <span class="cert-pill done">✓ Completed</span>
       </div>
+
       <div class="cert-card cc3">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-name">Generative AI for Everyone</div>
+        <div class="cert-by">DeepLearning.AI / Coursera</div>
+        <span class="cert-pill done">✓ Completed</span>
+      </div>
+
+      <div class="cert-card cc4">
+        <div class="cert-icon">⚡</div>
+        <div class="cert-name">Generative AI 10-Day Intensive</div>
+        <div class="cert-by">Self-directed — LLMs, RAG, LangChain, Ollama, Prompt Engineering, ChromaDB</div>
+        <span class="cert-pill done">✓ Completed</span>
+      </div>
+
+      <div class="cert-card cc5">
         <div class="cert-icon">🔐</div>
         <div class="cert-name">Introduction to Cybersecurity</div>
         <div class="cert-by">Cisco Networking Academy</div>
         <span class="cert-pill done">✓ Completed</span>
       </div>
-      <div class="cert-card cc4">
+
+      <div class="cert-card cc6">
         <div class="cert-icon">🎯</div>
         <div class="cert-name">Microsoft Dynamics 365 Fundamentals (MB-910)</div>
         <div class="cert-by">Microsoft Learn</div>
         <span class="cert-pill wip">⏳ In Progress</span>
       </div>
-      <div class="cert-card cc5">
-        <div class="cert-icon">⚡</div>
+
+      <div class="cert-card cc7">
+        <div class="cert-icon">☁️</div>
         <div class="cert-name">Salesforce Business Analyst Career Path</div>
         <div class="cert-by">Salesforce Trailhead</div>
         <span class="cert-pill wip">⏳ In Progress</span>
       </div>
-      <div class="cert-card cc6">
+
+      <div class="cert-card cc8">
         <div class="cert-icon">🔵</div>
         <div class="cert-name">Google Data Analytics Professional Certificate</div>
         <div class="cert-by">Google / Coursera</div>
         <span class="cert-pill wip">⏳ In Progress</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -904,8 +963,8 @@ footer {
     <div class="contact-grid">
       <div class="contact-left reveal-l">
         <div class="avail-tag"><div class="at-dot"></div>Available Immediately — Immediate Joiner</div>
-        <h3>Open to <span class="gr">new opportunities</span> in Data &amp; Analytics</h3>
-        <p>I'm actively looking for roles in Data Analytics, Business Analysis, BI Development, and Functional Consulting. If you have an opportunity or want to connect — I'd love to hear from you.</p>
+        <h3>Open to <span class="gr">new opportunities</span> in Data, Analytics &amp; Gen AI</h3>
+        <p>I'm actively looking for roles in Data Analytics, Business Analysis, BI Development, and Generative AI. If you have an opportunity or want to connect — I'd love to hear from you.</p>
         <div class="contact-btns">
           <a href="mailto:nanivadekarguru@gmail.com" class="cb-primary">📩 &nbsp;Email Me</a>
           <a href="https://www.linkedin.com/in/guruprasad-nanivadekar/" target="_blank" class="cb-outline">💼 &nbsp;LinkedIn</a>
@@ -950,7 +1009,6 @@ footer {
 </footer>
 
 <script>
-// ── THEME TOGGLE ──
 const html = document.documentElement;
 const toggle = document.getElementById('themeToggle');
 const label  = document.getElementById('themeLabel');
@@ -966,7 +1024,6 @@ toggle.addEventListener('click', () => {
   label.textContent = next === 'dark' ? '🌙 Dark' : '☀️ Light';
 });
 
-// ── NAV SCROLL SHADOW + ACTIVE LINK ──
 const nav = document.getElementById('topNav');
 const navAs = document.querySelectorAll('.nav-links a');
 const allSections = document.querySelectorAll('section[id]');
@@ -980,7 +1037,6 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ── INTERSECTION OBSERVER — REVEAL ANIMATIONS ──
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.1 });
