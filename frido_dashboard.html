@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frido — Product Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--bg:#fff;--panel:#FFFBE8;--line:#F0E1A0;--ink:#000;--dim:#555;--y:#FFC72C;--ibox:#FFF3BF;--iline:#F2CF55;--btn:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111;--panel:#1B1A14;--line:#3A3418;--ink:#fff;--dim:#BBB;--ibox:#2A2410;--iline:#6B5A14;--btn:#111}}
+:root[data-theme="dark"]{--bg:#111;--panel:#1B1A14;--line:#3A3418;--ink:#fff;--dim:#BBB;--ibox:#2A2410;--iline:#6B5A14;--btn:#111}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Inter","Segoe UI",sans-serif}
+.wrap{max-width:1100px;margin:0 auto}
+.head{padding:32px 32px 22px;border-bottom:6px solid var(--y)}
+.kicker{font-size:12px;font-weight:700;margin:0 0 6px;color:var(--dim)}
+h1{font-size:26px;font-weight:800;margin:0 0 6px;line-height:1.25}
+.sub{font-size:13.5px;color:var(--dim);margin:0;line-height:1.55;max-width:660px}
+.kpis{padding:22px 32px 6px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card,.panel,.src{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.card{padding:14px 16px 16px}
+.gl{font-size:11px;font-weight:800;margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--y)}
+.mini{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0}
+.mini+.mini{border-top:1px dashed var(--line)}
+.ml{font-size:12px;color:var(--dim)}
+.mv{font-size:16.5px;font-weight:800;text-align:right}
+.mv small{font-size:11px;font-weight:600;color:var(--dim);display:block;margin-top:1px}
+.insight{margin:20px 32px 0;background:var(--ibox);border:1px solid var(--iline);border-left:6px solid var(--y);border-radius:10px;padding:16px 20px}
+.il{font-size:11px;margin:0 0 6px;font-weight:800}
+.insight p:not(.il){font-size:13.5px;line-height:1.6;margin:0}
+.row{padding:20px 32px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.panel{padding:18px 20px 20px;display:flex;flex-direction:column;min-width:0}
+.ptr{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.pt{font-size:14.5px;font-weight:800;margin:0}
+.pn{font-size:12px;color:var(--dim);margin:0 0 14px;line-height:1.5}
+.tog{display:flex;gap:6px}
+.tog button{background:var(--btn);border:1px solid var(--line);color:var(--ink);font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:20px;cursor:pointer;font-family:inherit}
+.tog button:hover{border-color:var(--y)}
+.tog button.on{background:var(--y);color:#000;border-color:var(--y)}
+.tog button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.cv{position:relative;width:100%}
+.mix{display:flex;gap:18px;align-items:center;flex:1}
+.leg{flex:1;font-size:12px;min-width:0}
+.lr{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line);color:var(--dim)}
+.lr span:first-child{color:var(--ink);font-weight:500}
+.lr i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px}
+.lr:last-child{border-bottom:none}
+.full{margin:20px 32px 0}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:640px}
+th{text-align:left;font-size:11px;padding:8px 8px;border-bottom:3px solid var(--y);white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid var(--line)}
+td.n,th.n{text-align:right}
+.bar{display:inline-block;height:6px;background:var(--y);border-radius:3px;vertical-align:middle;margin-right:6px}
+.src{margin:20px 32px 0;padding:16px 20px}
+.srct{font-size:12px;font-weight:800;margin:0 0 10px}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 20px;font-size:11.5px;color:var(--dim)}
+.sg span{color:var(--ink);font-weight:600}
+.foot{padding:14px 32px 28px;font-size:11.5px;color:var(--dim);line-height:1.6}
+@media (max-width:780px){.kpis{grid-template-columns:1fr;padding:18px 18px 4px}.row{grid-template-columns:1fr;padding:16px 18px 0}.head{padding:22px 18px 18px}.insight,.full,.src{margin:16px 18px 0}.sg{grid-template-columns:1fr 1fr}.foot{padding:14px 18px 24px}.mix{flex-direction:column;align-items:stretch}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="head">
+  <p class="kicker">Sample analysis — public data only</p>
+  <h1>Frido: Product Analysis</h1>
+  <p class="sub">A look at 20 featured Frido products: where reviews concentrate, how prices and discounts are set, and which products need attention. Built from the myfrido.com storefront. Put together by Guruprasad Nanivadekar — October 2026.</p>
+</div>
+
+<div class="kpis">
+  <div class="card">
+    <p class="gl">PORTFOLIO</p>
+    <div class="mini"><span class="ml">Categories</span><span class="mv">12</span></div>
+    <div class="mini"><span class="ml">Products analysed</span><span class="mv">20</span></div>
+    <div class="mini"><span class="ml">Offer price range</span><span class="mv">₹849–₹36,999<small>median ₹1,549</small></span></div>
+  </div>
+  <div class="card">
+    <p class="gl">RATINGS &amp; REVIEWS</p>
+    <div class="mini"><span class="ml">Avg. rating</span><span class="mv">4.8★<small>review-weighted</small></span></div>
+    <div class="mini"><span class="ml">Rating range</span><span class="mv">4.6–4.9</span></div>
+    <div class="mini"><span class="ml">Total reviews</span><span class="mv">9,200+<small>top product 899+</small></span></div>
+  </div>
+  <div class="card">
+    <p class="gl">PRICING</p>
+    <div class="mini"><span class="ml">Avg. discount</span><span class="mv">44%</span></div>
+    <div class="mini"><span class="ml">Deepest discount</span><span class="mv">72%<small>Car Comfort Bundle</small></span></div>
+    <div class="mini"><span class="ml">Lightest discount</span><span class="mv">10%<small>Heel Protector</small></span></div>
+  </div>
+</div>
+
+<div class="insight">
+  <p class="il">Biggest opportunity</p>
+  <p>Demand sits at the low end, money sits at the high end. Products priced <b>₹1,500 or less</b> hold <b>49%</b> of reviews but only <b>13%</b> of review-weighted value. Just three products above ₹5,000 (the mattress topper and two chairs) hold 13% of reviews and <b>63%</b> of the value. Frido has a cheap entry product that people buy and review, and a premium tier that carries the rupees. The gap between them is the opportunity: bundles and upgrade paths that move a ₹999 buyer toward the ₹7,000+ products.</p>
+</div>
+
+<div class="row">
+  <div class="panel">
+    <p class="pt">Price vs. reviews</p>
+    <p class="pn">Each dot is a product. Price is on a log scale. Hover for the name.</p>
+    <div class="cv"><canvas id="cSc" height="210"></canvas></div>
+  </div>
+  <div class="panel">
+    <div class="ptr">
+      <p class="pt">Top 10 by reviews</p>
+      <div class="tog" id="t1"><button data-m="rev" class="on">Reviews</button><button data-m="disc">Discount %</button></div>
+    </div>
+    <p class="pn">Switch to see how deeply each is discounted.</p>
+    <div class="cv"><canvas id="cTop" height="210"></canvas></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="panel">
+    <div class="ptr">
+      <p class="pt">Category mix</p>
+      <div class="tog" id="t2"><button data-m="rev" class="on">By reviews</button><button data-m="val">By review value</button></div>
+    </div>
+    <p class="pn" id="mn">Share of all reviews across the 20 products.</p>
+    <div class="mix"><canvas id="cMix" width="130" height="130" style="flex-shrink:0"></canvas><div class="leg" id="leg"></div></div>
+  </div>
+  <div class="panel">
+    <p class="pt">Discount depth by category</p>
+    <p class="pn">Average % off list price. List price is the MRP shown on the storefront.</p>
+    <div class="cv"><canvas id="cDisc" height="210"></canvas></div>
+  </div>
+</div>
+
+<div class="insight">
+  <p class="il">Worth a look: women's footwear</p>
+  <p>The Men's Dual Strap Sandals rate <b>4.9</b> with <b>628+</b> reviews. The Women's Arch Comfort Sandals, from the same line, rate <b>4.6</b> with <b>328+</b> reviews: lower rating, about half the reviews, and a lighter discount (27% vs 38%). It ties with the Cold &amp; Hot Therapy Cap for the lowest rating in the set. Reading the women's sandal reviews for fit and comfort complaints is the quickest fix on the list.</p>
+</div>
+
+<div class="insight">
+  <p class="il">Worth a look: car comfort discounts</p>
+  <p>Car products average a <b>68% discount</b>, against 19% on orthotics and 26% on chairs. The Car Comfort Bundle lists at ₹10,698 and sells at ₹2,999. When the list price is one almost nobody pays, "% off" tells shoppers nothing. Testing a lower list price with a smaller discount on this category would show whether the deep discount is actually driving the 676+ reviews.</p>
+</div>
+
+<div class="insight">
+  <p class="il">Reading the ratings and the new launches</p>
+  <p>Ratings are flat (4.6 to 4.9 everywhere), so review count is the signal that separates products. Two products tagged "New", the Posture Corrector Pro and the Heel Protector, already have <b>410+</b> and <b>510+</b> reviews at 4.8, which is fast traction. By contrast the Adjustable Wedge Max Cushion has <b>6</b> reviews, and the Comfort Formal Shoes with Arch (₹4,999) shows no rating yet, so those two are too new to judge.</p>
+</div>
+
+<div class="panel full">
+  <p class="pt">Product scorecard</p>
+  <p class="pn">All 20 rated products, sorted by reviews. Review value = reviews × offer price, a rough proxy for rupee demand and not revenue.</p>
+  <div class="tw"><table><thead><tr><th>Product</th><th>Category</th><th class="n">Offer ₹</th><th class="n">MRP ₹</th><th class="n">Off</th><th class="n">Rating</th><th class="n">Reviews</th></tr></thead><tbody id="tb"></tbody></table></div>
+</div>
+
+<div class="src">
+  <p class="srct">Where these numbers come from</p>
+  <div class="sg">
+    <div><span>Prices, MRP, ratings, reviews:</span> myfrido.com featured-products grid, 5 Oct 2026</div>
+    <div><span>Categories and price floors:</span> myfrido.com navigation</div>
+    <div><span>Discount, review value, bands:</span> calculated from the above</div>
+  </div>
+</div>
+
+<div class="foot">
+  Review counts are shown on the storefront as floors ("410+"), so totals are lower bounds. The grid is a curated set of featured products, not the full catalogue, so category shares describe these 20 and not all of Frido. Reviews are a proxy for demand: they are not unit sales or revenue. A live version on Frido's own order data would give real units, margin by product and repeat purchase.
+</div>
+</div>
+
+<script>
+(function(){
+var D=[["Posture Corrector Pro","Orthotics",4.8,410,999,1399],["Heel Protector","Orthotics",4.8,510,899,1000],["Cloud Arch Support Slippers","Footwear",4.7,679,949,1999],["Ultimate Mattress Topper","Sleep & pillows",4.9,417,7399,11999],["Men's Dual Strap Sandals","Footwear",4.9,628,2499,3999],["Women's Arch Comfort Sandals","Footwear",4.6,328,2199,3000],["Ultimate Deep Sleep Pillow","Sleep & pillows",4.7,899,1699,3999],["ErgoLuxe Executive Chair","Chairs",4.8,322,36999,50000],["Ultimate Car Comfort Bundle","Car comfort",4.8,676,2999,10698],["Ultimate Car Neck Rest Pillow","Car comfort",4.8,602,999,3500],["Adjustable Wedge Max Cushion","Cushions",4.8,6,3499,6799],["3D Posture Plus Chair","Chairs",4.9,423,21999,30000],["Travel Neck Pillow","Sleep & pillows",4.9,511,1499,3599],["Ultimate Cozy Pillow","Sleep & pillows",4.8,587,999,1999],["Cloud Comfort Slippers","Footwear",4.8,158,849,1499],["Comfort Formal Shoes","Footwear",4.9,556,4499,9000],["Car Wedge Seat Cushion","Car comfort",4.8,269,1299,3599],["Anti-Slip Bath Mat","Other",4.8,405,1299,2000],["Car Backrest Cushion","Car comfort",4.8,412,1299,3599],["Cold & Hot Therapy Cap","Other",4.6,408,1599,2000]];
+function off(p){return Math.round((1-p[4]/p[5])*100)}
+var cs=getComputedStyle(document.documentElement);
+function v(n){return cs.getPropertyValue(n).trim()}
+var ink=v('--ink'),line=v('--line'),Y=v('--y'),pan=v('--panel');
+Chart.defaults.color=v('--dim');Chart.defaults.font.size=11.5;
+var tip={backgroundColor:'#000',titleColor:'#fff',bodyColor:'#fff',padding:10,displayColors:false};
+var R=D.slice().sort(function(a,b){return b[3]-a[3]});
+
+new Chart(document.getElementById('cSc'),{type:'scatter',
+ data:{datasets:[{data:D.map(function(p){return{x:p[4],y:p[3],n:p[0]}}),backgroundColor:Y,borderColor:ink,borderWidth:1.5,pointRadius:6,pointHoverRadius:8}]},
+ options:{responsive:true,plugins:{legend:{display:false},tooltip:Object.assign({},tip,{callbacks:{title:function(c){return c[0].raw.n},label:function(c){return '₹'+c.raw.x.toLocaleString('en-IN')+' · '+c.raw.y+'+ reviews'}}})},
+ scales:{x:{type:'logarithmic',min:700,max:50000,grid:{color:line},title:{display:true,text:'Offer price (₹)'},afterBuildTicks:function(a){a.ticks=[1000,2000,5000,10000,20000,40000].map(function(x){return{value:x}})},ticks:{callback:function(x){return x>=1000?(x/1000)+'K':x}}},y:{min:0,grid:{color:line},title:{display:true,text:'Reviews'}}}}});
+
+var T=R.slice(0,10);
+var tc=new Chart(document.getElementById('cTop'),{type:'bar',
+ data:{labels:T.map(function(p){return p[0]}),datasets:[{data:T.map(function(p){return p[3]}),backgroundColor:Y,borderColor:ink,borderWidth:1,borderRadius:3}]},
+ options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:Object.assign({},tip,{callbacks:{label:function(c){return document.querySelector('#t1 .on').dataset.m==='rev'?c.parsed.x+'+ reviews':c.parsed.x+'% off list'}}})},
+ scales:{x:{grid:{color:line}},y:{grid:{display:false},ticks:{font:{size:10}}}}}});
+document.querySelectorAll('#t1 button').forEach(function(b){b.onclick=function(){
+ document.querySelectorAll('#t1 button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+ var m=b.dataset.m;tc.data.datasets[0].data=T.map(function(p){return m==='rev'?p[3]:off(p)});
+ tc.options.scales.x.max=m==='rev'?undefined:100;tc.options.scales.x.ticks={callback:function(x){return m==='rev'?x:x+'%'}};tc.update()}});
+
+var cats=['Sleep & pillows','Footwear','Car comfort','Orthotics','Other','Chairs'],cols=['#FFC72C','#000','#B38600','#FFE48A','#999','#7A5C00'];
+function cat(p){return p[1]==='Cushions'?'Other':p[1]}
+var tot=0,totv=0;D.forEach(function(p){tot+=p[3];totv+=p[3]*p[4]});
+var mix={rev:[],val:[]};
+cats.forEach(function(c){var r=0,w=0;D.forEach(function(p){if(cat(p)===c||(c==='Orthotics'&&p[1]==='Orthotics')){r+=p[3];w+=p[3]*p[4]}});mix.rev.push(+(100*r/tot).toFixed(1));mix.val.push(+(100*w/totv).toFixed(1))});
+var mc=new Chart(document.getElementById('cMix'),{type:'doughnut',data:{labels:cats,datasets:[{data:mix.rev,backgroundColor:cols,borderColor:pan,borderWidth:2}]},options:{responsive:false,cutout:'62%',plugins:{legend:{display:false},tooltip:Object.assign({},tip,{callbacks:{label:function(c){return c.label+': '+c.parsed+'%'}}})}}});
+function leg(m){document.getElementById('leg').innerHTML=cats.map(function(c,i){return '<div class="lr"><span><i style="background:'+cols[i]+'"></i>'+c+'</span><span>'+mix[m][i]+'%</span></div>'}).join('')}
+leg('rev');
+document.querySelectorAll('#t2 button').forEach(function(b){b.onclick=function(){
+ document.querySelectorAll('#t2 button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+ var m=b.dataset.m;mc.data.datasets[0].data=mix[m];mc.update();leg(m);
+ document.getElementById('mn').textContent=m==='rev'?'Share of all reviews across the 20 products.':'Reviews × offer price. A rough proxy for rupee demand, not revenue.'}});
+
+var dc=cats.map(function(c){var s=D.filter(function(p){return cat(p)===c});return Math.round(s.reduce(function(a,p){return a+off(p)},0)/s.length)});
+new Chart(document.getElementById('cDisc'),{type:'bar',data:{labels:cats,datasets:[{data:dc,backgroundColor:Y,borderColor:ink,borderWidth:1,borderRadius:3}]},
+ options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:Object.assign({},tip,{callbacks:{label:function(c){return c.parsed.x+'% avg off list'}}})},scales:{x:{max:100,grid:{color:line},ticks:{callback:function(x){return x+'%'}}},y:{grid:{display:false}}}}});
+
+var mx=900,h='';
+R.forEach(function(p){h+='<tr><td><b>'+p[0]+'</b></td><td>'+p[1]+'</td><td class="n">'+p[4].toLocaleString('en-IN')+'</td><td class="n">'+p[5].toLocaleString('en-IN')+'</td><td class="n">'+off(p)+'%</td><td class="n">'+p[2].toFixed(1)+'</td><td class="n"><span class="bar" style="width:'+Math.round(p[3]/mx*70)+'px"></span>'+p[3]+'+</td></tr>'});
+document.getElementById('tb').innerHTML=h;
+})();
+</script>
+</body>
+</html>
