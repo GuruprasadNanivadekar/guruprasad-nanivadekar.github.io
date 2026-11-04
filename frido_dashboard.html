@@ -6,10 +6,10 @@
 <title>Frido: business snapshot</title>
 <style>
 /* IMAGES: drop files into an "images" folder next to this file. Missing files are skipped quietly.
-   frido-hero.jpg (title, right side) | frido-story.jpg (timeline backdrop) | frido-close.jpg (closing slide)
-   cat-cushions.jpg cat-orthotics.jpg cat-insoles.jpg cat-footwear.jpg cat-pillows.jpg cat-chairs.jpg
-   cat-mattress.jpg cat-personal.jpg cat-accessories.jpg cat-socks.jpg cat-barefoot.jpg cat-workspace.jpg */
-:root{--img-hero:url("images/frido-hero.jpg");--img-story:url("images/frido-story.jpg");--img-close:url("images/frido-close.jpg");
+   frido-hero.jpeg (title, right side) | frido-story.jpeg (timeline backdrop) | frido-close.jpeg (closing slide)
+   cat-cushions.jpeg cat-orthotics.jpeg cat-insoles.jpeg cat-footwear.jpeg cat-pillows.jpeg cat-chairs.jpeg
+   cat-mattress.jpeg cat-personal.jpeg cat-accessories.jpeg cat-socks.jpeg cat-barefoot.jpeg cat-workspace.jpeg */
+:root{--img-hero:url("images/frido-hero.jpeg");--img-story:url("images/frido-story.jpeg");--img-close:url("images/frido-close.jpeg");
 --y:#FFC400;--yd:#8A6500;--ys:#FFF8DC;--yl:#F4E4A4;--ink:#1B1B1F;--mute:#5E5E66;--line:#ECECEF}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:56px}
@@ -249,7 +249,7 @@ $('cnt').innerHTML=C.length+' categories on the site: '+n('Core')+' core, '+n('A
 $('rail').innerHTML=C.map(function(c,i){return '<button data-i="'+i+'">'+c[1]+'</button>'}).join('');
 function fill(i){var c=C[i],t=T[c[4]];
  $('ph').textContent=c[1];$('cimg').style.display='none';$('ph').style.display='flex';
- var im=new Image();im.onload=function(){$('cimg').src=im.src;$('cimg').style.display='block';$('ph').style.display='none'};im.src='images/cat-'+c[0]+'.jpg';
+ var im=new Image();im.onload=function(){$('cimg').src=im.src;$('cimg').style.display='block';$('ph').style.display='none'};im.src='images/cat-'+c[0]+'.jpeg';
  var star='\u2605',NA=['\u2014','No Frido listing found in search'];
  var tiles=c[0]==='cushions'?[['\u20B91,299','Sale price, backrest listing'],['64% off','MRP \u20B93,599'],['4.8 '+star,'412+ ratings on Frido site']]:[];
  var M={cushions:[['4.3 '+star,'Ultimate Wedge Plus Max, no count shown'],['4.0 '+star,'Pro Seat + Backrest combo, 160 ratings']],
